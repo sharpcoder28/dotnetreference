@@ -28,8 +28,8 @@ public class EndpointTests
             customerId,
             DateTime.UtcNow,
             [
-                new DotnetReference.Api.Commands.OrderItem("Product 1", 2, 10.00m),
-                new DotnetReference.Api.Commands.OrderItem("Product 2", 1, 20.00m)
+                new Api.Commands.OrderItem("Product 1", 2, 10.00m),
+                new Api.Commands.OrderItem("Product 2", 1, 20.00m)
             ]
         );
 
@@ -66,12 +66,12 @@ public class EndpointTests
         
         var order1 = new Order(
             customerId,
-            [new DotnetReference.Api.Domain.OrderItem("Product A", 1, 10.00m)],
+            [new Api.Domain.OrderItem("Product A", 1, 10.00m)],
             mockTaxCalculator.Object
         );
         var order2 = new Order(
             customerId,
-            [new DotnetReference.Api.Domain.OrderItem("Product B", 2, 15.00m)],
+            [new Api.Domain.OrderItem("Product B", 2, 15.00m)],
             mockTaxCalculator.Object
         );
 
@@ -124,17 +124,17 @@ public class EndpointTests
 
         var order1 = new Order(
             customer1Id,
-            [new DotnetReference.Api.Domain.OrderItem("Product 1", 1, 10.00m)],
+            [new Api.Domain.OrderItem("Product 1", 1, 10.00m)],
             mockTaxCalculator.Object
         );
         var order2 = new Order(
             customer2Id,
-            [new DotnetReference.Api.Domain.OrderItem("Product 2", 1, 20.00m)],
+            [new Api.Domain.OrderItem("Product 2", 1, 20.00m)],
             mockTaxCalculator.Object
         );
         var order3 = new Order(
             customer1Id,
-            [new DotnetReference.Api.Domain.OrderItem("Product 3", 1, 30.00m)],
+            [new Api.Domain.OrderItem("Product 3", 1, 30.00m)],
             mockTaxCalculator.Object
         );
 
@@ -167,12 +167,11 @@ public class EndpointTests
         var command = new CreateOrder(
             customerId,
             DateTime.UtcNow,
-            new List<DotnetReference.Api.Commands.OrderItem>
-            {
-                new DotnetReference.Api.Commands.OrderItem("Product 1", 3, 15.00m),
-                new DotnetReference.Api.Commands.OrderItem("Product 2", 2, 25.50m),
-                new DotnetReference.Api.Commands.OrderItem("Product 3", 1, 100.00m)
-            }
+            [
+                new Api.Commands.OrderItem("Product 1", 3, 15.00m),
+                new Api.Commands.OrderItem("Product 2", 2, 25.50m),
+                new Api.Commands.OrderItem("Product 3", 1, 100.00m)
+            ]
         );
 
         // Act
