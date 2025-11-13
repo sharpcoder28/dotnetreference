@@ -15,6 +15,7 @@ public class OrderDbContext(DbContextOptions<OrderDbContext> options) : DbContex
         modelBuilder.Entity<Order>(entity =>
         {
             entity.HasKey(e => e.Id);
+            entity.Property(e => e.CustomerId).IsRequired();
             entity.Property(e => e.OrderDate).IsRequired();
             entity.HasMany(e => e.Items)
                   .WithOne()
@@ -22,8 +23,8 @@ public class OrderDbContext(DbContextOptions<OrderDbContext> options) : DbContex
                   .OnDelete(DeleteBehavior.Cascade);
             
             // Ignore computed properties
-            entity.Ignore(e => e.NetAmount);
-            entity.Ignore(e => e.TotalAmount);
+            entity.Ignore(e => e.Subtotal);
+            entity.Ignore(e => e.Total);
         });
 
         modelBuilder.Entity<OrderItem>(entity =>
